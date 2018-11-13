@@ -13,4 +13,12 @@
     <PackageReference Include="CsvHelper" Version="8.2.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="zip_codes_states.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="zip_codes_states.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
