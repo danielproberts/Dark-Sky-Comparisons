@@ -13,7 +13,8 @@ namespace Dark_Sky_Comparisons
     {
         static void Main(string[] args)
         {
-            //Initialize Program
+            //Initialize Program Variables
+            string windowHeader;
             string userSelection;
             string url;
             string zip1 = "";
@@ -21,7 +22,10 @@ namespace Dark_Sky_Comparisons
             string apiKey = ConfigurationManager.AppSettings["api_key"];
 
             //Request Data From User
-            Console.WriteLine(String.Format("{0," + (Console.WindowWidth / 2) + "}", "Weather Comparisons - Powered by Dark Sky"));
+            Console.Clear();
+            windowHeader = "Weather Comparisons - Powered by Dark Sky";
+            Console.SetCursorPosition((Console.WindowWidth - windowHeader.Length) / 2, Console.CursorTop);
+            Console.WriteLine(windowHeader);
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Please enter the ZIP Code for the first city you would like to compare: ");
@@ -41,6 +45,10 @@ namespace Dark_Sky_Comparisons
             Console.ReadKey();
             Console.Clear();
 
+            windowHeader = "Searching for Zip Codes...";
+            Console.SetCursorPosition((Console.WindowWidth - windowHeader.Length) / 2, Console.CursorTop);
+            Console.WriteLine(windowHeader);
+
             //Set up Data for location1
             DarkSkyData city1 = new DarkSkyData();
             Location location1 = new Location();
@@ -58,6 +66,11 @@ namespace Dark_Sky_Comparisons
             city2 = city2.pullForecast(url);
             city2.cityName = location2.city;
 
+            //Round Temperature Values - Prevents Math Anomalies
+            city1.currently.temperature = System.Math.Round(city1.currently.temperature);
+            city2.currently.temperature = System.Math.Round(city2.currently.temperature);
+
+
             //Final Setup
             Console.WriteLine();
             Console.WriteLine("Press any key to continue...");
@@ -72,11 +85,11 @@ namespace Dark_Sky_Comparisons
                 Console.WriteLine();
                 Console.WriteLine("Which metric would you like to compare?");
                 Console.WriteLine();
-                Console.WriteLine("View Data");
                 Console.WriteLine("1 - Temperature");
                 Console.WriteLine("2 - Humidity");
                 Console.WriteLine("3 - Wind");
                 Console.WriteLine("4 - UV Index");
+                Console.WriteLine();
                 Console.WriteLine("s - Save Comparison Data");
                 Console.WriteLine();
                 Console.WriteLine("q - Quit");
@@ -363,6 +376,11 @@ namespace Dark_Sky_Comparisons
                         {
                             Console.Clear();
                             break;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            continue;
                         }
                     }
                 }

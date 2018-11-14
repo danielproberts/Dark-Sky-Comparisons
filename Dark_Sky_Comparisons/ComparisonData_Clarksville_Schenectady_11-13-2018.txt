@@ -1,0 +1,26 @@
+Comparison Data - Powered by Dark Sky
+Process Date: 11-13-2018
+Process Time: 18:44:44PM
+
+** Current Weather Data for Clarksville, IN **
+Current Conditions: Overcast
+The current temperature is: 35°F.
+The current apparent temperature is: 29°F.
+The current humidity is: 71%.
+The current wind speed is: 6.54MPH.
+The current UV Index is: 0.
+
+** Current Weather Data for Schenectady, NY **
+Current Conditions: Mostly Cloudy
+The current temperature is: 35°F.
+The current apparent temperature is: 28°F.
+The current humidity is: 90%.
+The current wind speed is: 8.59MPH.
+The current UV Index is: 0.
+
+** Comparison Data for Clarksville, IN and Schenectady, NY **
+It is currently the same temperature in Clarksville and Schenectady.
+It currently feels 1°F warmer in Clarksville than Schenectady.
+The humidity is currently 19% higher in Schenectady than in Clarksville.
+The wind is currently blowing 2.05MPH faster in Schenectady than in Clarksville.
+The UV Index is currently the same in Clarksville and Schenectady.
