@@ -14,6 +14,7 @@ namespace Dark_Sky_Comparisons
             string zip1 = "";
             string zip2 = "";
             string apiKey = ConfigurationManager.AppSettings["api_key"];
+            string savePath = "";
 
             //Request Data From User
             Console.Clear();
@@ -217,7 +218,7 @@ namespace Dark_Sky_Comparisons
                         write.WriteLine("The current wind speed is: " + city1.currently.windSpeed + "MPH.");
                         write.WriteLine("The current UV Index is: " + city1.currently.uvIndex + ".");
                         write.WriteLine();
-
+                        
                         write.WriteLine("** Current Weather Data for " + city2.cityName + ", " + location2.state + " **");
                         write.WriteLine("Current Conditions: " + city2.currently.summary);
                         write.WriteLine("The current temperature is: " + System.Math.Round(city2.currently.temperature) + "\x00B0" + "F.");
@@ -324,6 +325,7 @@ namespace Dark_Sky_Comparisons
                             break;
                         }
 
+                        savePath = ((FileStream)(write.BaseStream)).Name;  //Saves File Path as a String for opening file through Console
                         write.Close();
                         Console.Clear();
                     }
@@ -340,7 +342,8 @@ namespace Dark_Sky_Comparisons
                         userSelection = Console.ReadLine();
                         if (userSelection == "1")
                         {
-                            using (var reader = new StreamReader("ComparisonData_" + city1.cityName + "_" + city2.cityName + "_" + DateTime.Today.ToString("yyyyMMdd") + ".txt"))
+                            using (var reader = new StreamReader(savePath))
+
                             {
                                 Console.Clear();
                                 while (!reader.EndOfStream)
