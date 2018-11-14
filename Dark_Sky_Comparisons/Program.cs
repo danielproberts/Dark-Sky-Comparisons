@@ -1,11 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Configuration;
-//using System.Collections.Generic;
-//using System.Net;
-//using Newtonsoft.Json;
-//using System.Linq;
-//using System.Collections.Specialized;
 
 namespace Dark_Sky_Comparisons
 {
@@ -14,7 +9,6 @@ namespace Dark_Sky_Comparisons
         static void Main(string[] args)
         {
             //Initialize Program Variables
-            string windowHeader;
             string userSelection;
             string url;
             string zip1 = "";
@@ -23,9 +17,7 @@ namespace Dark_Sky_Comparisons
 
             //Request Data From User
             Console.Clear();
-            windowHeader = "Weather Comparisons - Powered by Dark Sky";
-            Console.SetCursorPosition((Console.WindowWidth - windowHeader.Length) / 2, Console.CursorTop);
-            Console.WriteLine(windowHeader);
+            CenterTitle("Weather Comparisons - Powered by Dark Sky");
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Please enter the ZIP Code for the first city you would like to compare: ");
@@ -45,9 +37,7 @@ namespace Dark_Sky_Comparisons
             Console.ReadKey();
             Console.Clear();
 
-            windowHeader = "Searching for Zip Codes...";
-            Console.SetCursorPosition((Console.WindowWidth - windowHeader.Length) / 2, Console.CursorTop);
-            Console.WriteLine(windowHeader);
+            CenterTitle("Searching for Zip Codes...");
 
             //Set up Data for location1
             DarkSkyData city1 = new DarkSkyData();
@@ -66,10 +56,9 @@ namespace Dark_Sky_Comparisons
             city2 = city2.pullForecast(url);
             city2.cityName = location2.city;
 
-            //Round Temperature Values - Prevents Math Anomalies
+            //Round Temperature Values - Prevents Arithmetic Anomalies
             city1.currently.temperature = System.Math.Round(city1.currently.temperature);
             city2.currently.temperature = System.Math.Round(city2.currently.temperature);
-
 
             //Final Setup
             Console.WriteLine();
@@ -80,7 +69,7 @@ namespace Dark_Sky_Comparisons
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine(String.Format("{0," + (Console.WindowWidth / 2) + "}", "Weather Comparisons - Powered by Dark Sky"));
+                CenterTitle("Weather Comparisons - Powered by Dark Sky");
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine("Which metric would you like to compare?");
@@ -102,7 +91,7 @@ namespace Dark_Sky_Comparisons
                 //Compare Temperature
                 if (userSelection == "1")
                 {
-                    Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Weather Comparisons - Powered by Dark Sky"));
+                    CenterTitle("Weather Comparisons - Powered by Dark Sky");
                     Console.WriteLine();
                     Console.WriteLine();
                     Console.WriteLine("The current temperature in " + location1.city + ", " + location1.state + " is: " + System.Math.Round(city1.currently.temperature) + "\x00B0" + "F.");
@@ -129,7 +118,7 @@ namespace Dark_Sky_Comparisons
                 //Compare Humidity
                 else if (userSelection == "2")
                 {
-                    Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Weather Comparisons - Powered by Dark Sky"));
+                    CenterTitle("Weather Comparisons - Powered by Dark Sky");
                     Console.WriteLine();
                     Console.WriteLine();
                     Console.WriteLine("The current humidity in " + city1.cityName + " is: " + (city1.currently.humidity) * 100 + "%");
@@ -156,7 +145,7 @@ namespace Dark_Sky_Comparisons
                 //Compare Wind
                 else if (userSelection == "3")
                 {
-                    Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Weather Comparisons - Powered by Dark Sky"));
+                    CenterTitle("Weather Comparisons - Powered by Dark Sky");
                     Console.WriteLine();
                     Console.WriteLine();
                     Console.WriteLine("The current wind speed in " + city1.cityName + " is: " + city1.currently.windSpeed + " Miles per Hour.");
@@ -183,7 +172,7 @@ namespace Dark_Sky_Comparisons
                 //Compare UV Index
                 if (userSelection == "4")
                 {
-                    Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Weather Comparisons - Powered by Dark Sky"));
+                    CenterTitle("Weather Comparisons - Powered by Dark Sky");
                     Console.WriteLine();
                     Console.WriteLine();
                     Console.WriteLine("The current UV Index in " + location1.city + ", " + location1.state + " is: " + city1.currently.uvIndex + ".");
@@ -210,11 +199,11 @@ namespace Dark_Sky_Comparisons
                 //Save Comparison Data
                 else if (userSelection == "s")
                 {
-                    Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Weather Comparisons - Powered by Dark Sky"));
+                    CenterTitle("Weather Comparisons - Powered by Dark Sky");
                     Console.WriteLine();
                     Console.WriteLine();
 
-                    using (var write = new StreamWriter("ComparisonData_" + city1.cityName + "_" + city2.cityName + "_" + DateTime.Today.ToString("MM-dd-yyyy") + ".txt"))
+                    using (var write = new StreamWriter("ComparisonData_" + city1.cityName + "_" + city2.cityName + "_" + DateTime.Today.ToString("yyyyMMdd") + ".txt"))
                     {
                         write.WriteLine("Comparison Data - Powered by Dark Sky");
                         write.WriteLine("Process Date: " + DateTime.Today.ToString("MM-dd-yyyy"));
@@ -351,7 +340,7 @@ namespace Dark_Sky_Comparisons
                         userSelection = Console.ReadLine();
                         if (userSelection == "1")
                         {
-                            using (var reader = new StreamReader("ComparisonData_" + city1.cityName + "_" + city2.cityName + "_" + DateTime.Today.ToString("MM-dd-yyyy") + ".txt"))
+                            using (var reader = new StreamReader("ComparisonData_" + city1.cityName + "_" + city2.cityName + "_" + DateTime.Today.ToString("yyyyMMdd") + ".txt"))
                             {
                                 Console.Clear();
                                 while (!reader.EndOfStream)
@@ -391,6 +380,13 @@ namespace Dark_Sky_Comparisons
                     break;
                 }
             }
+        }
+
+        public static void CenterTitle(string s)
+        {
+            string windowHeader = s;
+            Console.SetCursorPosition((Console.WindowWidth - windowHeader.Length) / 2, Console.CursorTop);
+            Console.WriteLine(windowHeader);
         }
     }
 }
