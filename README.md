@@ -18,6 +18,7 @@ build the application, then click Run.
 ## Suggested Entry Data
 
 Zip Code 1: 12345 - Schenectady, NY
+
 Zip Code 2: 96821 - Honolulu, HI
 
 Using these values will produce markedly different comaprison data, though any valid US Zip Codes will work.  Some
