@@ -14,3 +14,11 @@ save the comparisons as a text file, and then immediately print the contents of 
 
 The most straightforward way to use this applications is to download the repository, open the SLN file in Visual Studio,
 build the application, then click Run.
+
+## Suggested Entry Data
+
+Zip Code 1: 12345 - Schenectady, NY
+Zip Code 2: 96821 - Honolulu, HI
+
+Using these values will produce markedly different comaprison data, though any valid US Zip Codes will work.  Some
+error-checking is present within the program to prevent duplicate or invalid Zip Code entries.
