@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="zip_codes_states.csv" />
+    <None Remove="ComparisonData_Clarksville_Schenectady_20181114.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="zip_codes_states.csv">
