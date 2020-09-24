@@ -1,6 +1,5 @@
-using System.Net;
+﻿﻿using System.Net;
 using Newtonsoft.Json;
-
 namespace Dark_Sky_Comparisons
 {
     public class DarkSkyData
@@ -13,6 +12,7 @@ namespace Dark_Sky_Comparisons
         public int offset {get; set; }
 
         //Custom Properties
+<<<<<<< HEAD
         public string cityName;
 
         //Custom Function - Pull Forecast Data
