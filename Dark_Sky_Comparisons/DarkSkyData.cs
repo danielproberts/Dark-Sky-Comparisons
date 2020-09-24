@@ -19,8 +19,8 @@ namespace Dark_Sky_Comparisons
         {
             using (WebClient wc = new WebClient())
             {
-                var json - wc.DownloadString(url);
-                DarkSkyData forecastData = JsonConvert.DeserializeOjbect<DarkSkyData>(json);
+                var json = wc.DownloadString(url);
+                DarkSkyData forecastData = JsonConvert.DeserializeObject<DarkSkyData>(json);
                 return forecastData;
             }
         }
