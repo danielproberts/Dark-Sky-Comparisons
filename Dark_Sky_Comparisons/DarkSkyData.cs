@@ -12,7 +12,6 @@ namespace Dark_Sky_Comparisons
         public int offset {get; set; }
 
         //Custom Properties
-<<<<<<< HEAD
         public string cityName;
 
         //Custom Function - Pull Forecast Data
